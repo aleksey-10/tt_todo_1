@@ -48,8 +48,6 @@ const App: React.FC = () => {
     }));
   }
 
-  console.log(todos);
-
   const activeItem: TodoI | undefined = todos.find(todo => todo.isActive);
 
   const addComment = (todoId: string, title: string, color: string) => {

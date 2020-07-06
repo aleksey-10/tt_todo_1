@@ -11,7 +11,12 @@ type NewTodoProps = {
 };
 
 export const NewTodo: React.FC<NewTodoProps> = ({ addTodo }) => {
-  const { register, handleSubmit, reset, errors } = useForm<FormData>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    errors,
+  } = useForm<FormData>();
 
   const onSubmit = handleSubmit(({ title }) => {
     addTodo(title);
