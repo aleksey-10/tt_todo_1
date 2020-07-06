@@ -1,26 +1,70 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import { uuid } from 'uuidv4';
+import { Items } from './components/Items';
+import { Comments } from './components/Comments/Comments';
+import { TodoI } from './interfaces/TodoI';
 
-function App() {
+const App: React.FC = () => {
+  const [todos, setTodos] = useState<TodoI[]>(JSON.parse(localStorage.getItem('todos') || '[]'));
+
+  const addTodo = (title: string) => {
+    setTodos(prev => [
+      ...prev,
+      {
+        title,
+        id: uuid(),
+        isActive: false,
+        comments: [],
+      },
+    ]);
+  };
+
+  const removeTodo = (id: string) => {
+    setTodos(prev => prev.filter(todo => todo.id !== id));
+  };
+
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
+
+  const setActiveItem = (id: string) => {
+    setTodos(prev => prev.map(todo => {
+      if (todo.id === id) {
+        return { ...todo, isActive: true };
+      }
+
+      return { ...todo, isActive: false };
+    }));
+  };
+
+  if (todos.length && todos.every(todo => !todo.isActive)) {
+    setTodos(prev => prev.map((todo, index) => {
+      if (index === prev.length - 1) {
+        return { ...todo, isActive: true };
+      }
+
+      return todo;
+    }));
+  }
+
+  console.log(todos);
+
+  const activeItem: TodoI | undefined = todos.find(todo => todo.isActive);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App container">
+      <Items
+        todos={todos}
+        addTodo={addTodo}
+        removeTodo={removeTodo}
+        setActiveItem={setActiveItem}
+      />
+      {
+        activeItem && <Comments todo={activeItem} />
+      }
     </div>
   );
-}
+};
 
 export default App;

@@ -10,10 +10,14 @@
     "@types/node": "^12.12.47",
     "@types/react": "^16.9.41",
     "@types/react-dom": "^16.9.8",
+    "bootstrap": "^4.5.0",
     "react": "^16.13.1",
+    "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
+    "react-hook-form": "^6.0.1",
     "react-scripts": "3.4.1",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "uuidv4": "^6.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -35,5 +39,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@mate-academy/eslint-config-react-typescript": "*",
+    "@mate-academy/stylelint-config": "*",
+    "eslint": "^6.8.0",
+    "eslint-plugin-node": "^11.1.0",
+    "stylelint": "^13.6.1"
   }
 }
