@@ -1,0 +1,2 @@
+.App{display:flex;justify-content:space-around;padding-top:50px}.todo{cursor:pointer}.todo--active{border-left:2px solid #dc143c!important}.todo-field{padding:10px;width:500px;border:1px solid #d3d3d3;margin:20px}.todo-comments{text-align:center;color:#fff;font-weight:700;width:30px;border-radius:40%}@media (max-width:1000px){.App{flex-direction:column-reverse}}
+/*# sourceMappingURL=main.af60fd7b.chunk.css.map */
