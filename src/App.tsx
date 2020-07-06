@@ -52,6 +52,26 @@ const App: React.FC = () => {
 
   const activeItem: TodoI | undefined = todos.find(todo => todo.isActive);
 
+  const addComment = (todoId: string, title: string, color: string) => {
+    setTodos(prev => prev.map(todo => {
+      if (todoId === todo.id) {
+        return {
+          ...todo,
+          comments: [
+            ...todo.comments,
+            {
+              id: uuid(),
+              title,
+              color,
+            },
+          ],
+        };
+      }
+
+      return todo;
+    }));
+  };
+
   return (
     <div className="App container">
       <Items
@@ -61,7 +81,7 @@ const App: React.FC = () => {
         setActiveItem={setActiveItem}
       />
       {
-        activeItem && <Comments todo={activeItem} />
+        activeItem && <Comments todo={activeItem} addComment={addComment} />
       }
     </div>
   );

@@ -27,6 +27,11 @@
   border-radius: 40%;
 }
 
+.comment {
+  display: flex;
+  height: 50px;
+}
+
 @media (max-width: 1000px) {
   .App {
     flex-direction: column-reverse;

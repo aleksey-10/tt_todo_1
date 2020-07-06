@@ -11,10 +11,11 @@ type NewTodoProps = {
 };
 
 export const NewTodo: React.FC<NewTodoProps> = ({ addTodo }) => {
-  const { register, handleSubmit } = useForm<FormData>();
+  const { register, handleSubmit, reset, errors } = useForm<FormData>();
 
   const onSubmit = handleSubmit(({ title }) => {
     addTodo(title);
+    reset();
   });
 
   return (
@@ -27,6 +28,7 @@ export const NewTodo: React.FC<NewTodoProps> = ({ addTodo }) => {
               placeholder="Type name here..."
               name="title"
               ref={register({ required: true })}
+              className={`${errors.title ? 'is-invalid' : ''}`}
             />
           </Form.Group>
         </Col>
