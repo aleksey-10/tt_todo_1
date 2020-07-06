@@ -21,13 +21,10 @@ export const NewComment: React.FC<NewCommentProps> = ({ addComment, todoId }) =>
   const {
     register,
     handleSubmit,
-    setValue,
     errors,
   } = useForm<FormData>();
 
   const onSubmit = handleSubmit((data) => {
-    setValue('title', '');
-
     addComment(todoId, data.title, data.color);
   });
 
