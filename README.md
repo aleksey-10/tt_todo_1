@@ -7,6 +7,7 @@
 - React
 - TypeScript
 - Bootstrap / React-bootstrap
+- LocalStorage
 
 ## Install
 
